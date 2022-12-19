@@ -10,9 +10,8 @@ def read_data(use_test_data, split_by_line = True):
     split_by_line - if True then output is in a list with one entry per line in the input data, if False then output is a single string with all file contents in it
     """
     path_name, file_name = os.path.split(main.__file__)
-    sub_dir = "" if use_test_data else "data"
     file_name = "test.txt" if use_test_data else (file_name.split('.')[0] + ".txt")
-    file_path = os.path.join(path_name, sub_dir, file_name)
+    file_path = os.path.join(path_name, "data", file_name)
 
     with open(file_path, "r") as f:
         data = f.read().strip()
