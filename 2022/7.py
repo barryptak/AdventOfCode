@@ -1,7 +1,7 @@
 """
 https://adventofcode.com/2022/day/7
 """
-from utils import *
+from utils import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -17,7 +17,8 @@ for line in data:
 
     # Look commands
     if parts[0] == "$":
-        # We only care about cd command and can safely ignore the ls ones (as we will pick up their output later)
+        # We only care about cd command and can safely ignore the ls ones
+        # (as we will pick up their output later)
         if parts[1] == "cd":
             if parts[2] == "..":
                 stack.pop()
@@ -27,9 +28,10 @@ for line in data:
                 stack.append(parts[2])
                 path = "/".join(stack)
                 path_size[path] = 0
-    # ignore dir listings as we assume that we enter and ls inside every directory
-    # (since otherwise the size calculations would be missing data anyway).
-    # We could create path_size entries for all listed dirs just to be safe though.
+    # ignore dir listings as we assume that we enter and ls inside every
+    # directory (since otherwise the size calculations would be missing data
+    # anyway). We could create path_size entries for all listed dirs just to be
+    # safe though.
     elif parts[0] == "dir":
         continue
     else:
@@ -46,12 +48,24 @@ for file, size in files.items():
         path_size[file[:i]] += size
     path_size[""] += size
 
-# Part 1 - sum of all dir sizes less than 100000
-print(sum([dir_size for dir_size in path_size.values() if dir_size <= 100000]))
 
-# Part 2 - size of smallest dir that can be deleted to have at least 30000000 free
-total_space = 70000000
-space_free = total_space - path_size[""]
-needed_space = 30000000
-need_to_free = needed_space - space_free
-print(min([dir_size for dir_size in path_size.values() if dir_size >= need_to_free]))
+# Part 1
+# Sum of all dir sizes less than 100000
+SIZE_LIMIT = 100000
+
+all_dir_sizes_under_limit = [dir_size for dir_size in path_size.values() if dir_size <= SIZE_LIMIT]
+sum_of_dir_sizes = sum(all_dir_sizes_under_limit)
+
+print(sum_of_dir_sizes)
+
+# Part 2
+# Size of smallest dir that can be deleted to have at least 30000000 free
+TOTAL_SPACE = 70000000
+SPACE_FREE = TOTAL_SPACE - path_size[""]
+NEEDE_SPACE = 30000000
+NEED_TO_FREE = NEEDE_SPACE - SPACE_FREE
+
+all_dir_sizes_over_limit = [dir_size for dir_size in path_size.values() if dir_size >= NEED_TO_FREE]
+smallest_dir_size_over_limit = min(all_dir_sizes_over_limit)
+
+print(smallest_dir_size_over_limit)

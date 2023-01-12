@@ -1,7 +1,7 @@
 """
 https://adventofcode.com/2022/day/2
 """
-from utils import *
+from utils import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -49,8 +49,8 @@ POINTS_FOR_RESULT = {
         }
     }
 
-# Look up table for part two that determines the move to make based on 
-# the opponent's move and the outcome we want
+# Look up table for part two that determines the move to make based on the
+# opponent's move and the outcome we want
 MOVE_TO_MAKE = {
     OPPONENT_PLAYS_ROCK: {
         LOSE: YOU_PLAY_SCISSORS,
@@ -79,8 +79,9 @@ for line in data:
     # Get the points for the moves indicated in the input data
     part1_points += POINTS_FOR_RESULT[opponent_move][my_move]
 
-    # For part 2 we need to determine the move to make based on the outcome we want 
-    # so look that actual move up first and then get the points for making it.
+    # For part 2 we need to determine the move to make based on the outcome we
+    # want so look that actual move up first and then get the points for making
+    # it.
     move_to_make = MOVE_TO_MAKE[opponent_move][my_move]
     part2_points += POINTS_FOR_RESULT[opponent_move][move_to_make]
 
