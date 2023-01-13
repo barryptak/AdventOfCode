@@ -49,8 +49,18 @@ class Point2D:
     """ 2D integer Point class """
 
     def __init__(self, x=0, y=0):
-        self.x = x
-        self.y = y
+        ERROR_STRING = "Point2D constructor requires two ints or a list/tupple of two ints"
+        if isinstance(x, int) and isinstance(y, int):
+            self.x = x
+            self.y = y
+        elif (isinstance(x, tuple) or isinstance(x, list)) and y == 0:
+            if len(x) == 2 and isinstance(x[0], int) and isinstance(x[1], int):
+                self.x = x[0]
+                self.y = x[1]
+            else:
+                raise ValueError(ERROR_STRING)
+        else:
+            raise ValueError(ERROR_STRING)
 
     def __eq__(self, other):
         return self.x == other.x and self.y == other.y
