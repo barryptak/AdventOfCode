@@ -2,7 +2,7 @@
 https://adventofcode.com/2022/day/12
 """
 import math
-from utils import read_data, Point2D
+from utils import read_data, Point2D, manhattan_distance
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -122,19 +122,12 @@ def astar_path_length(start_list, goal, dist_heuristic, get_neighbours):
     # No path found :(
     return None
 
-
-def manhattan_dist(pos1, pos2):
-    """ Return the Manhattan distance between two points """
-    diff = pos1 - pos2
-    return abs(diff.x) + abs(diff.y)
-
-
 # Part 1
 # Find the shortest path from START to END
 startList, end = find_endpoints(heightmap, START)
-print(astar_path_length(startList, end, manhattan_dist, get_neighbour_coords_1))
+print(astar_path_length(startList, end, manhattan_distance, get_neighbour_coords_1))
 
 # Part 2
 # Find the shortest path from any position of MIN_HEIGHT to END
 startList, _ = find_endpoints(heightmap, MIN_HEIGHT)
-print(astar_path_length(startList, end, manhattan_dist, get_neighbour_coords_2))
+print(astar_path_length(startList, end, manhattan_distance, get_neighbour_coords_2))

@@ -1,7 +1,9 @@
 """
 Helpers for Advent of Code problems.
 """
-
+import functools
+import itertools
+import math
 import os
 import re
 import __main__ as main
@@ -45,11 +47,12 @@ def add_lists(a, b):
     """
     return list(map(lambda x, y: x + y, a, b))
 
+
 class Point2D:
     """ 2D integer Point class """
 
     def __init__(self, x=0, y=0):
-        ERROR_STRING = "Point2D constructor requires two ints or a list/tupple of two ints"
+        ERROR_STRING = "Point2D constructor requires two ints or a list/tuple of two ints"
         if isinstance(x, int) and isinstance(y, int):
             self.x = x
             self.y = y
@@ -76,3 +79,91 @@ class Point2D:
 
     def __hash__(self):
         return hash((self.x, self.y))
+
+
+def manhattan_distance(pos1, pos2):
+    """ Calculates the Manhattan distance between two points """
+    return abs(pos1.x - pos2.x) + abs(pos1.y - pos2.y)
+
+
+def dijkstra(start_node, nodes, edges):
+    """
+    Calculates the shortest distance from start_node to every node in nodes.
+    edges is a tuple of (dest_node, edge_cost).
+    """
+
+    # Helper function to pop the node with the smallest dist value
+    # from the queue
+    def pop_smallest_dist(queue, dist):
+        filtered_dist = {k: v for k, v in dist.items() if k in queue}
+        min_dist = min(filtered_dist, key=filtered_dist.get)
+        queue.remove(min_dist)
+        return min_dist
+
+    node_queue = []
+    dist = {}
+    prev = {}
+
+    # Intitialise our data
+    for node in nodes:
+        dist[node] = math.inf
+        prev[node] = None
+        node_queue.append(node)
+    dist[start_node] = 0
+
+    # Iterate over every node in our queue pulling out the least expensive to
+    # get to first. This ensure that when we encounter more expsensive nodes
+    # later we might already have found a cheaper path to them through other
+    # nodes previously processed
+    while len(node_queue) > 0:
+        current_node = pop_smallest_dist(node_queue, dist)
+
+        # Iterate through all nodes that you can travel to from current_node
+        for node in [edge for edge in edges[current_node] if edge[0] in node_queue]:
+            # Determine the cost to traverse to node via current_node
+            alt = dist[current_node] + node[1]
+            # If this cost is less than the current lowest cost to get to node
+            # then update the lowest cost and prev values for node
+            if alt < dist[node[0]]:
+                dist[node[0]] = alt
+                prev[node[0]] = current_node
+
+    # We now have the lowest cost for travelling to all nodes from start_node
+    # and the paths to get there
+    return dist, prev
+
+
+def memoized_generator(generator_function):
+    """
+    Memoization wrapper for a generator function
+    Instead of:
+        for foo in my_generator(x, y z):
+    Do:
+        my_generator_2 = memoized_generator(my_generator)
+        for foo in my_generator_2(x, y, z):
+    """
+    cache = {}
+    @functools.wraps(generator_function)
+    def wrapper(*args, **kwargs):
+        cache_key = args, frozenset(kwargs.items())
+        cache_it = cache[cache_key] if cache_key in cache else generator_function(*args, **kwargs)
+        _, result = itertools.tee(cache_it)
+        return result
+    return wrapper
+
+def powerset(iterable):
+    """
+    Returns the powerset of the input list/iterable 
+    powerset([a, b, c]) returns (), (a,), (b,), (c,), (a,b), (a,c), (b,c), (a,b,c)
+    """
+    input_list = list(iterable)
+    it_range = range(len(input_list) + 1)
+    return itertools.chain.from_iterable(itertools.combinations(input_list, i) for i in it_range)
+
+@functools.cache
+def dedupe_frozenset(fs):
+    """
+    Uses the func tools cache memoization pattern to dedupe frozensets that are
+    essentially the same. Leads to memory savings.
+    """
+    return fs
