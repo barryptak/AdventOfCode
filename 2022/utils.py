@@ -9,7 +9,7 @@ import re
 import __main__ as main
 
 
-def read_data(use_test_data, split_by_line=True, input_file_name=None):
+def read_data(use_test_data, split_by_line=True, strip=True, input_file_name=None):
     """
     Read puzzle input data in from text file.
     We figure out the name of the script being run (e.g. 1.py) and infer the
@@ -27,7 +27,9 @@ def read_data(use_test_data, split_by_line=True, input_file_name=None):
     file_path = os.path.join(path_name, "data", input_file_name)
 
     with open(file_path, "r", encoding="utf-8") as file:
-        data = file.read().strip()
+        data = file.read()
+        if strip:
+            data = data.strip()
 
     if split_by_line:
         data = data.split("\n")
@@ -35,17 +37,17 @@ def read_data(use_test_data, split_by_line=True, input_file_name=None):
     return data
 
 
-def extract_ints(s):
+def extract_ints(input_string):
     """ Extracts a list of all ints found in the supplied string """
-    return [int(i) for i in re.findall("-?\d+", s)]
+    return [int(i) for i in re.findall("-?\d+", input_string)]
 
 
-def add_lists(a, b):
+def add_lists(tuple1, tuple2):
     """
-    Adds two lists (or tuples, etc) element by element and returns a list
+    Adds two tuples (or lists, etc) element by element and returns a tuple
     containing the results
     """
-    return list(map(lambda x, y: x + y, a, b))
+    return tuple(map(lambda x, y: x + y, tuple1, tuple2))
 
 
 class Point2D:
@@ -131,39 +133,3 @@ def dijkstra(start_node, nodes, edges):
     # We now have the lowest cost for travelling to all nodes from start_node
     # and the paths to get there
     return dist, prev
-
-
-def memoized_generator(generator_function):
-    """
-    Memoization wrapper for a generator function
-    Instead of:
-        for foo in my_generator(x, y z):
-    Do:
-        my_generator_2 = memoized_generator(my_generator)
-        for foo in my_generator_2(x, y, z):
-    """
-    cache = {}
-    @functools.wraps(generator_function)
-    def wrapper(*args, **kwargs):
-        cache_key = args, frozenset(kwargs.items())
-        cache_it = cache[cache_key] if cache_key in cache else generator_function(*args, **kwargs)
-        _, result = itertools.tee(cache_it)
-        return result
-    return wrapper
-
-def powerset(iterable):
-    """
-    Returns the powerset of the input list/iterable 
-    powerset([a, b, c]) returns (), (a,), (b,), (c,), (a,b), (a,c), (b,c), (a,b,c)
-    """
-    input_list = list(iterable)
-    it_range = range(len(input_list) + 1)
-    return itertools.chain.from_iterable(itertools.combinations(input_list, i) for i in it_range)
-
-@functools.cache
-def dedupe_frozenset(fs):
-    """
-    Uses the func tools cache memoization pattern to dedupe frozensets that are
-    essentially the same. Leads to memory savings.
-    """
-    return fs

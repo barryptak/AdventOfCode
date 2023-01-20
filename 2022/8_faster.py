@@ -5,7 +5,7 @@ from utils import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
-trees = read_data(USE_TEST_DATA, SPLIT_BY_LINE, "8.txt")
+trees = read_data(USE_TEST_DATA, SPLIT_BY_LINE, input_file_name="8.txt")
 grid_height = len(trees)
 grid_width = len(trees[0])
 
