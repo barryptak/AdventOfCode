@@ -1,8 +1,7 @@
 """
 Helpers for Advent of Code problems.
 """
-import functools
-import itertools
+
 import math
 import os
 import re
@@ -42,7 +41,7 @@ def extract_ints(input_string):
     return [int(i) for i in re.findall("-?\d+", input_string)]
 
 
-def add_lists(tuple1, tuple2):
+def add_tuples(tuple1, tuple2):
     """
     Adds two tuples (or lists, etc) element by element and returns a tuple
     containing the results
