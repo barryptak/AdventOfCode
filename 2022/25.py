@@ -23,14 +23,13 @@ def snafu_to_int(snafu):
 
 def int_to_snafu(num):
     """ Converts an int into a SNAFU format string """
-    snafu_string = ""
+    snafu_string = []
     while num > 0:
-        val = num % 5
-        num //= 5
+        num, val = divmod(num, 5)
         if val > 2:
             num += 1
-        snafu_string += NUMERALS[val]
-    return snafu_string[::-1]
+        snafu_string.append(NUMERALS[val])
+    return "".join(snafu_string[::-1])
 
 
 # Part 1
