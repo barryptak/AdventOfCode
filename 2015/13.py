@@ -1,6 +1,7 @@
 """
 https://adventofcode.com/2015/day/13
 """
+from itertools import permutations
 from utils import read_data
 
 USE_TEST_DATA = False
@@ -30,14 +31,13 @@ def parse_people(data_in):
 
 def all_orders(starting_person, other_people):
     """
-    Generator function returning all permutations of seating orders
+    Generator function returning all permutations of seating orders.
+    We keep the starting person anchored to avoid having permutations that are
+    the same as each other just with everyone rotated round the table in the
+    same order.
     """
-    for person in other_people:
-        for child_order in all_orders(person, other_people - {person}):
-            yield [starting_person] + child_order
-
-    if len(other_people) == 0:
-        yield [starting_person]
+    for perm in permutations(other_people, len(other_people)):
+        yield [starting_person] + list(perm)
 
 
 def score_order(order, happiness):
@@ -53,7 +53,7 @@ def score_order(order, happiness):
         score += happiness[person][order[i+1]]
 
     # Don't forget to account for the last person in the order who needs to
-    # consider the first person too.        
+    # consider the first person too.
     score += happiness[order[-1]][order[0]]
     score += happiness[order[-1]][order[-2]]
 
@@ -76,7 +76,7 @@ start = next(iter(weights.keys()))
 # Part 1
 # What is the greatest overall happiness score that we can achieve by ordering
 # the dinner guests appropriately?
-best_score = max((score_order(order, weights) 
+best_score = max((score_order(order, weights)
                   for order in all_orders(start, weights.keys() - {start})))
 print(best_score)
 
@@ -85,6 +85,6 @@ print(best_score)
 # What is the greatest overall happiness score that we can achieve when I also
 # attend?
 add_me(weights)
-best_score = max((score_order(order, weights) 
+best_score = max((score_order(order, weights)
                   for order in all_orders(start, weights.keys() - {start})))
 print(best_score)
