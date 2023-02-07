@@ -1,5 +1,7 @@
 # Advent of Code
 
+![image](https://user-images.githubusercontent.com/43549850/217219083-0b1bb23e-d578-456e-bf04-8fcf94e33e83.png)
+
 My Python (3.10) solutions for [Advent of Code](https://adventofcode.com/).
 
 These are not intended to be the fastest, most succinct, or cleverest solutions around.
