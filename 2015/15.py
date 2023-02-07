@@ -15,6 +15,8 @@ num_ingredients = len(ingredient_list)
 
 def gen_combo(num_values, max_value):
     """ Generator function to produce all combinations of ingredient counts """
+    # We could use itertools.permutations here, but this approach is much faster
+    # as we need to consider a large number of permutations
     if num_values == 1:
         yield [max_value]
     else:
