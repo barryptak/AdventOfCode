@@ -72,7 +72,7 @@ def run(bots, instructions):
             # The instruction tells us which bots to pass the low and high
             # chips to. Once we've reassigned the chips to the next bots we
             # delete the old bot from the main bot list as we won't use it
-            # again. 
+            # again.
             instruction = instructions[bot]
             assign_chip(chips[0], instruction[0], bots_copy)
             assign_chip(chips[1], instruction[1], bots_copy)
