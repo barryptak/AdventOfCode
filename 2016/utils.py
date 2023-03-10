@@ -37,6 +37,19 @@ def read_data(use_test_data, split_by_line=True, strip=True, input_file_name=Non
     return data
 
 
+def rotate_string(string, steps):
+    """
+    Rotate the string by the specified steps.
+    Positive values rotate right, negative values rotate left.
+    """
+    if steps == 0 or len(string) == 0:
+        return string
+
+    direction = 1 if steps < 0 else -1
+    steps = abs(steps) % len(string) * direction
+    return string[steps:] + string[:steps]
+
+
 def extract_ints(input_string):
     """ Extracts a list of all ints found in the supplied string """
     return [int(i) for i in re.findall("-?\d+", input_string)]
@@ -172,7 +185,7 @@ def astar_path_length(start_list, goal, dist_heuristic, get_neighbours):
             tentative_g = g[pos] + 1
             neighbour_g = g[neighbour] if neighbour in g else math.inf
             if tentative_g < neighbour_g:
-                # Pos -> neighbour is the cheapest path we've found to neigbour
+                # Pos -> neighbour is the cheapest path we've found to neighbour
                 # so far.
                 # Update come_from to indicate that the best path to neighbour
                 # is from pos.
