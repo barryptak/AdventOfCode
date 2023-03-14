@@ -1,7 +1,7 @@
 """
 https://adventofcode.com/2016/day/21
 """
-from utils import read_data, rotate_string
+from utils.data import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -31,6 +31,19 @@ def get_num_rotations(index, length):
     if index >= 4:
         num_rotations += 1
     return num_rotations % length
+
+
+def rotate_string(string, steps):
+    """
+    Rotate the string by the specified steps.
+    Positive values rotate right, negative values rotate left.
+    """
+    if steps == 0 or len(string) == 0:
+        return string
+
+    direction = 1 if steps < 0 else -1
+    steps = abs(steps) % len(string) * direction
+    return string[steps:] + string[:steps]
 
 
 def rotate_on_letter(string, letter):

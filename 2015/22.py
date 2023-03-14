@@ -4,7 +4,7 @@ https://adventofcode.com/2015/day/22
 
 import copy
 import math
-from utils import add_tuples
+from utils.data import add_tuples
 
 #region CONSTANTS
 
@@ -32,7 +32,7 @@ EFFECTS = [0]*NUM_SPELLS
 
 #region Optimisation Helpers
 
-# We can store the lowest succesful mana cost so far so that we don't go bother
+# We can store the lowest successful mana cost so far so that we don't go bother
 # to explore further combinations of spells that are already more expensive
 # than this.
 global_low = math.inf
@@ -75,7 +75,7 @@ def apply_effects(player, enemy, active_effects):
     # NOTE: If you are getting 1235 as your result and you can't figure out why,
     # it's because you're adding 7 armour every turn that the shield spell is
     # active. The spell is only supposed to boost the player's armour by 7 for
-    # the current turn. Not accumulate 7 each turn. This is mnot overly clear
+    # the current turn. Not accumulate 7 each turn. This is not overly clear
     # in the wording of the puzzle!
     # Here I return the amount of armour boost rather than adjusting the
     # player's armour stat (as that would be more awkward to handle).
@@ -86,7 +86,7 @@ def apply_effects(player, enemy, active_effects):
 
 def fight(player_state, enemy_state, effects_state, mana_used, part2):
     """
-    Simulates the fight betwen the player and the enemy and returns the least
+    Simulates the fight between the player and the enemy and returns the least
     amount of mana that can be spent and still win the fight
     """
 

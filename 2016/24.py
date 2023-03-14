@@ -4,7 +4,9 @@ https://adventofcode.com/2016/day/24
 import functools
 import math
 from itertools import permutations
-from utils import astar_path_length, manhattan_distance, Point2D, read_data
+from utils.data import read_data
+from utils.path_finding import astar_path_length
+from utils.point2d import Point2D, manhattan_distance
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True

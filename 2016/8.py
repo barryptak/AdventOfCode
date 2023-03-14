@@ -2,7 +2,7 @@
 https://adventofcode.com/2016/day/8
 """
 from itertools import product
-from utils import read_data, extract_ints
+from utils.data import read_data, extract_ints
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -23,6 +23,7 @@ def rotate_down(screen, col, steps):
 
 
 def render_screen(instructions):
+    """ Execute the instruction list and return the rendered screen output """
     screen = [[" "]*50]*6
     for line in instructions:
         # Pull the A & B values for the line and then figure out what the

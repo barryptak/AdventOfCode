@@ -3,7 +3,7 @@ https://adventofcode.com/2016/day/4
 """
 import re
 from collections import Counter
-from utils import read_data
+from utils.data import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -36,7 +36,7 @@ def sum_sector_ids(room_data):
 
 def rotate_letter(letter, amount):
     """
-    Rotate the given letter by amount steps (wrapping around to a when steping
+    Rotate the given letter by amount steps (wrapping around to a when stepping
     past z)
     """
     # Dashes convert to spaces

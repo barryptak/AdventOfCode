@@ -1,7 +1,7 @@
 """
 https://adventofcode.com/2016/day/12
 """
-from utils import read_data
+from utils.data import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -14,7 +14,7 @@ def parse_instructions(data_in):
     optimisation on them.
     """
 
-    # First iterate over the instructions and do some minor fixup:
+    # First iterate over the instructions and do some minor fix up:
     # Change cpy instructions where the value to cpy is a literal to be an
     # explicit stl (store literal) instruction as we can then execute each
     # instruction faster by not having to check if we're dealing with a

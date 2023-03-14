@@ -3,7 +3,7 @@ https://adventofcode.com/2022/day/25
 """
 
 from functools import reduce
-from utils import read_data
+from utils.data import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True

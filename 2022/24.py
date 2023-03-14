@@ -3,7 +3,8 @@ https://adventofcode.com/2022/day/24
 """
 
 import copy
-from utils import read_data, add_tuples, Point2D
+from utils.data import read_data, add_tuples
+from utils.point2d import Point2D
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -51,8 +52,8 @@ def step_weather(valley_grid):
                     elif new_y >= len(valley_grid) - 1:
                         new_y = 1
 
-                # If there is no blizzrd at this location then replace the empty
-                # marker with this blizzard.
+                # If there is no blizzard at this location then replace the
+                # empty marker with this blizzard.
                 # If there's already a list of blizzards at this location then
                 # append this one to the list
                 if new_grid[new_y][new_x][0] == ".":
@@ -88,7 +89,7 @@ def is_valid_position(pos, valley_grid):
 def find_path(valley_grid, start_pos, end_pos):
     """
     Finds a path through the valley from start_pos to end_pos.
-    Retuns the number of steps taken to reach the goal, and the final valley
+    Returns the number of steps taken to reach the goal, and the final valley
     layout (since the blizzards have moved around)
     """
 

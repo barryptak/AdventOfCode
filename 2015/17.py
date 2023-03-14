@@ -1,8 +1,8 @@
-# """
-# https://adventofcode.com/2015/day/17
-# """
+"""
+https://adventofcode.com/2015/day/17
+"""
 from itertools import combinations
-from utils import read_data
+from utils.data import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True

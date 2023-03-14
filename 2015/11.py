@@ -26,13 +26,13 @@ def get_next_candidate_password(password):
     Produce the next candidate iteration for a password by incrementing it by
     one.
     Accounts for the no i,l,o rule, but does not account for the rules about
-    strights and character pairs.
+    straights and character pairs.
     """
     output_password = []
     carry = 1
     prefix = [ORD_A]
 
-    # Iterate over the pasword backwards so that we start at the lsb
+    # Iterate over the password backwards so that we start at the lsb
     for char in password[::-1]:
         char += carry
 
@@ -43,7 +43,7 @@ def get_next_candidate_password(password):
             carry = 1
         # No overflow - set the character to char unless that's one of the bad
         # chars (i,l,o) in which case set it to char + 1.
-        # Reset the carry bit since there's no oveflow.
+        # Reset the carry bit since there's no overflow.
         # Also clear the prefix since there's no overflow from the msb.
         else:
             output_password.append(char if char not in BAD_ORDS else char + 1)
@@ -53,9 +53,9 @@ def get_next_candidate_password(password):
 
     # The final password is:
     # prefix (to account for any overflow from the old msb)
-    # + the untouched msbs from the original password
-    # + the modified lsbs in output_password (which we need to reverse as we
-    # appended to it in lsb->msb order)
+    # + the untouched most-significant-bits from the original password
+    # + the modified least-significant-bits in output_password (which we need
+    # to reverse as we appended to it in lsb->msb order)
     return prefix + password[:-len(output_password)] + output_password[::-1]
 
 

@@ -1,7 +1,7 @@
 """
 https://adventofcode.com/2022/day/3
 """
-from utils import read_data
+from utils.data import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -33,9 +33,9 @@ for items in data:
     # Iterate over all items in compartment 2 and find the one that is also in
     # compartment 1
     for i in range(num_items_per_compartment, len(items)):
-        item = items[i]
-        if item in compartment1:
-            priority_sum += get_priority(item)
+        rucksack_item = items[i]
+        if rucksack_item in compartment1:
+            priority_sum += get_priority(rucksack_item)
             break
 
 print(priority_sum)
@@ -49,9 +49,9 @@ while i < len(data):
     rucksack2 = data[i + 1]
     rucksack3 = data[i + 2]
 
-    for item in rucksack1:
-        if item in rucksack2 and item in rucksack3:
-            priority_sum += get_priority(item)
+    for rucksack_item in rucksack1:
+        if rucksack_item in rucksack2 and rucksack_item in rucksack3:
+            priority_sum += get_priority(rucksack_item)
             break
 
     i += 3

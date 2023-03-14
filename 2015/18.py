@@ -2,7 +2,7 @@
 https://adventofcode.com/2015/day/18
 """
 from itertools import product
-from utils import read_data
+from utils.data import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -59,14 +59,14 @@ def simulate_lights(grid, steps, force_corner_lights_on=False):
 
 
 # Part 1
-# Simualte the lights for 100 steps and count the final lit number
+# Simulate the lights for 100 steps and count the final lit number
 final_lights = simulate_lights(light_grid, 100)
 light_count = sum(1 for row in final_lights for light in row if light)
 print(light_count)
 
 
 # Part 2
-# Simualte the lights for 100 steps when the four corner lights are stuck on
+# Simulate the lights for 100 steps when the four corner lights are stuck on
 # and count the final lit number
 turn_on_corner_lights(light_grid)
 final_lights = simulate_lights(light_grid, 100, True)

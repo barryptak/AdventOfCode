@@ -2,7 +2,8 @@
 https://adventofcode.com/2016/day/13
 """
 import functools
-from utils import astar_path_length, manhattan_distance, Point2D
+from utils.path_finding import astar_path_length
+from utils.point2d import manhattan_distance, Point2D
 
 
 @functools.cache

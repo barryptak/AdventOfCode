@@ -2,7 +2,7 @@
 https://adventofcode.com/2015/day/15
 """
 from math import prod
-from utils import read_data, extract_ints
+from utils.data import read_data, extract_ints
 
 
 USE_TEST_DATA = False
@@ -38,7 +38,7 @@ def get_combo_score(combo, ingredients, calorie_target=None):
             values[i] += prop * count
 
     # If we have a calorie target and don't match it then return 0 as we're
-    # not interestedi in cookies that have the incorrect calorie count
+    # not interested in cookies that have the incorrect calorie count
     if calorie_target is not None and values[-1] != calorie_target:
         return 0
 

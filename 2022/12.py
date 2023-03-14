@@ -1,8 +1,9 @@
 """
 https://adventofcode.com/2022/day/12
 """
-import math
-from utils import read_data, Point2D, manhattan_distance
+from utils.data import read_data
+from utils.path_finding import astar_path_length
+from utils.point2d import Point2D, manhattan_distance
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -72,55 +73,6 @@ def get_neighbour_coords_2(pos):
     # another path that we're already evaluating.
     return [n for n in get_neighbour_coords_1(pos) if heightmap[n.y][n.x] != MIN_HEIGHT]
 
-
-def astar_path_length(start_list, goal, dist_heuristic, get_neighbours):
-    """
-    Returns the shortest path length from any start pos to the end pos.
-    Implements A*
-    """
-    open_set = set(start_list)
-    came_from = {}
-    g = {s : 0 for s in start_list}
-    f = {s : dist_heuristic(s, goal) for s in start_list}
-
-    while len(open_set) > 0:
-        # Pull the pos from the open set that we think is closest to the goal
-        pos = sorted(open_set, key = lambda p: f[p])[0]
-
-        # Have we reached the goal?
-        if pos == goal:
-            # Calculate the length of this path and return it
-            path_length = 0
-            # Walk backwards from pos pulling out the previous position that
-            # got us here. Keep going until we've completed the path backwards
-            # so that there's no predecessor left.
-            while pos in came_from:
-                pos = came_from[pos]
-                path_length += 1
-            return path_length
-
-        open_set.remove(pos)
-
-        # Examine all of the valid neighbours of pos
-        for neighbour in get_neighbours(pos):
-            # Is the path from pos to neighbour the cheapest one so far?
-            tentative_g = g[pos] + 1
-            neighbour_g = g[neighbour] if neighbour in g else math.inf
-            if tentative_g < neighbour_g:
-                # Pos -> neighbour is the cheapest path we've found to neigbour
-                # so far.
-                # Update come_from to indicate that the best path to neighbour
-                # is from pos.
-                # Update the heuristic scores for neighbour and add it to the
-                # open set.
-                came_from[neighbour] = pos
-                g[neighbour] = tentative_g
-                f[neighbour] = tentative_g + dist_heuristic(neighbour, goal)
-                if neighbour not in open_set:
-                    open_set.add(neighbour)
-
-    # No path found :(
-    return None
 
 # Part 1
 # Find the shortest path from START to END

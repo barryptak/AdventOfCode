@@ -1,7 +1,8 @@
 """
 https://adventofcode.com/2022/day/8
 """
-from utils import read_data, Point2D
+from utils.data import read_data
+from utils.point2d import Point2D, UDLR_OFFSETS
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -9,8 +10,6 @@ trees = read_data(USE_TEST_DATA, SPLIT_BY_LINE, input_file_name="8.txt")
 
 grid_height = len(trees)
 grid_width = len(trees[0])
-
-DIRS = [Point2D(-1, 0), Point2D(1, 0), Point2D(0, -1), Point2D(0, 1)]
 
 def is_visible(pos):
     """ Is the specified tree visible from outside the grid? """
@@ -21,7 +20,7 @@ def is_visible(pos):
     # or taller than the current one.
     # If we do then this tree is not visible from the outside in that
     # direction.
-    for delta in DIRS:
+    for delta in UDLR_OFFSETS:
         pos2 = pos + delta
         visible_for_this_direction = True
 
@@ -35,7 +34,7 @@ def is_visible(pos):
                 break
 
             # Step to the next tree to test
-            pos2.add(delta)
+            pos2 += delta
 
         # As soon as we're visible from one direction then we're visible overall
         if visible_for_this_direction:
@@ -61,7 +60,7 @@ def calculate_scenic_score(pos):
     # Walk in each cardinal direction checking if we find a tree the same height
     # or taller than the current one.
     # If we do then we've gone as far as we can see.
-    for delta in DIRS:
+    for delta in UDLR_OFFSETS:
         pos2 = pos + delta
         count = 0
 
@@ -75,7 +74,7 @@ def calculate_scenic_score(pos):
                 break
 
             # Step to the next tree to test
-            pos2.add(delta)
+            pos2 += delta
 
         # multiply the running scenic score by the score for the current
         # cardinal direction

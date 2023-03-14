@@ -1,7 +1,8 @@
 """
 https://adventofcode.com/2022/day/9
 """
-from utils import read_data, Point2D
+from utils.data import read_data
+from utils.point2d import Point2D
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -19,14 +20,14 @@ def follow(knot, other):
     if abs(delta.x) <= 1 and abs(delta.y) <= 1:
         return knot
 
-    move = (0, 0)
+    move = Point2D(0, 0)
 
     # Knots are in the same row - move horizontally only
     if delta.y == 0:
         dist = abs(delta.x)
         if dist == 2:
             move = MOVE["R"] if delta.x > 0 else MOVE["L"]
-    # Knots are in the same solumn - move vertically only
+    # Knots are in the same column - move vertically only
     elif delta.x == 0:
         dist = abs(delta.y)
         if dist == 2:

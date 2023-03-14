@@ -1,7 +1,9 @@
 """
 https://adventofcode.com/2016/day/22
 """
-from utils import astar_path_length, extract_ints, manhattan_distance, Point2D, read_data
+from utils.data import extract_ints, read_data
+from utils.path_finding import astar_path_length
+from utils.point2d import manhattan_distance, Point2D
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True

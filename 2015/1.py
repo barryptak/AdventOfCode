@@ -1,22 +1,11 @@
 """
 https://adventofcode.com/2015/day/1
 """
-from utils import read_data
+from utils.data import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = False
 data = read_data(USE_TEST_DATA, SPLIT_BY_LINE)
-
-# Pythony implementation for part 1
-# We need to iterate through the list twice here though, and since we also need
-# to iterate again for part 2 we may as well just combine them all into one
-# loop instead.
-# Just keeping this here as a note.
-#
-# up_count = len([up for up in data if up == "("])
-# down_count = len([down for down in data if down == ")"])
-# print(up_count - down_count)
-
 
 # Parts 1 & 2
 # Find the final floor that we end up on

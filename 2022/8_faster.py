@@ -1,7 +1,7 @@
 """
 https://adventofcode.com/2022/day/8
 """
-from utils import read_data
+from utils.data import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -13,7 +13,7 @@ grid_width = len(trees[0])
 
 def check_visibility(grid, visibility, y, x, max_height):
     """
-    Mark this tree visibile if it's taller than the current max_height.
+    Mark this tree visible if it's taller than the current max_height.
     Return the new max_height so that we can use it for the next tree along.
     """
     tree_height = grid[y][x]
@@ -46,7 +46,7 @@ def walk_vertically(grid, visibility, x):
         max_height2 = check_visibility(grid, visibility, y2, x, max_height2)
 
 
-# Initialise visibilty data
+# Initialise visibility data
 tree_visibility = []
 for row in range(grid_height):
     tree_visibility.append([False] * grid_width)

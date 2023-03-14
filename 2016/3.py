@@ -1,7 +1,7 @@
 """
 https://adventofcode.com/2016/day/3
 """
-from utils import read_data, extract_ints
+from utils.data import read_data, extract_ints
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True

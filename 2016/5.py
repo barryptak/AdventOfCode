@@ -1,11 +1,10 @@
 """
 https://adventofcode.com/2016/day/5
 """
-
-from utils import clear_console
-from timeit import default_timer as timer
 import hashlib
 import random
+from timeit import default_timer as timer
+from utils.console import clear_console
 
 ENCRYPTED_CHARS = "abcdefghijklmnopqrtsuvwxyz0123456789?!#$%^&*@"
 
@@ -28,6 +27,7 @@ def print_passwords(title, pass1, pass2):
 
 
 def decrypt_passwords(door_id):
+    """ Decrypt the two passwords for the specified door """
     index = 0
     password1 = ["_", "_", "_", "_", "_", "_", "_", "_"]
     password2 = list(password1)
@@ -64,5 +64,5 @@ def decrypt_passwords(door_id):
 
 
 # Parts 1 & 2
-# Display the decrypted passwords for both decrpytion methods 
+# Display the decrypted passwords for both decryption methods
 print_passwords("DECRYPTION COMPLETE", *decrypt_passwords("uqwqemis"))

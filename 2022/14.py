@@ -2,7 +2,8 @@
 https://adventofcode.com/2022/day/14
 """
 import copy
-from utils import read_data, Point2D
+from utils.data import read_data
+from utils.point2d import Point2D
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -40,6 +41,7 @@ def parse_cave(rock_paths):
 
 
 def blocked(cave, pos, hard_floor = None):
+    """ Is the current position blocked or not? """
     if hard_floor is not None and pos.y == hard_floor:
         return True
     else:

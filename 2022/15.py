@@ -2,7 +2,8 @@
 https://adventofcode.com/2022/day/15
 """
 import functools
-from utils import read_data, extract_ints, Point2D, manhattan_distance
+from utils.data import read_data, extract_ints
+from utils.point2d import Point2D, manhattan_distance
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -29,7 +30,7 @@ def collapse_ranges(ranges):
     ranges.sort(key=functools.cmp_to_key(sort_ranges))
 
     # Collapse ranges together when they overlap
-    
+
     collapsed_ranges = []
     starting_range = ranges[0]
     start_x = starting_range.start
@@ -74,7 +75,7 @@ def get_no_beacon_windows(sensor_list, row_index, x_range=None):
         # there are no other beacons
         dist_to_row = abs(row_index - sensor_position.y)
         overlap = beacon_distance - dist_to_row
-        
+
         # No overlap means this sensor does not affect this row. Move on.
         if overlap < 0:
             continue
@@ -98,7 +99,7 @@ def get_no_beacon_windows(sensor_list, row_index, x_range=None):
     # Return the ranges collapsed into as few as possible
     return collapse_ranges(no_beacon_windows)
 
-# Parse data to extract postions of sensors and beacons
+# Parse data to extract positions of sensors and beacons
 sensors = []
 beacons = set()
 for line in data:

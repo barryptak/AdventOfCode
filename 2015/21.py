@@ -4,7 +4,7 @@ https://adventofcode.com/2015/day/21
 from functools import cache, reduce
 from itertools import combinations, product
 from math import ceil
-from utils import add_tuples
+from utils.data import add_tuples
 
 
 #region Constants

@@ -1,7 +1,7 @@
 """
 https://adventofcode.com/2016/day/7
 """
-from utils import read_data
+from utils.data import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -32,7 +32,7 @@ def supports_tls(ip):
 
 
 def is_aba(s):
-    """ Does the suppplied string match the ABA pattern? """
+    """ Does the supplied string match the ABA pattern? """
     return s[0] == s[2] and s[0] != s[1]
 
 
@@ -53,7 +53,7 @@ def supports_ssl(ip):
         if ip[i] in "[]":
             in_bracket = not in_bracket
         else:
-            # Did we find a valid ABA patern?
+            # Did we find a valid ABA pattern?
             aba = ip[i:i+3]
             if is_aba(aba):
                 # Check if we already found the corresponding BAB pattern

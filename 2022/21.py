@@ -4,10 +4,10 @@ https://adventofcode.com/2022/day/21
 import copy
 import sympy
 from sympy.parsing.sympy_parser import parse_expr
-from utils import read_data
+from utils.data import read_data
 
 # NOTE: I'm still nto very familiar with sympy, but this is my attempt at using
-# it to resolve a series of equations down to fiuring out the missing value.
+# it to resolve a series of equations down to figuring out the missing value.
 # Seemed similar to the problem I used it for in
 # https://cs50.harvard.edu/ai/2020/
 

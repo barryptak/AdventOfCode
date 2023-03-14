@@ -1,7 +1,7 @@
 """
 https://adventofcode.com/2022/day/4
 """
-from utils import read_data
+from utils.data import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -10,7 +10,7 @@ data = read_data(USE_TEST_DATA, SPLIT_BY_LINE)
 
 def section_is_contained(subsection, supersection):
     """
-    Returns whether subsectionn is entirely contained within supersection
+    Returns whether subsection is entirely contained within supersection
     """
     return subsection[0] >= supersection[0] and subsection[1] <= supersection[1]
 

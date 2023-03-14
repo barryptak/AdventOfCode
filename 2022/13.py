@@ -3,7 +3,7 @@ https://adventofcode.com/2022/day/13
 """
 import functools
 import math
-from utils import read_data
+from utils.data import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = False
@@ -95,6 +95,6 @@ sort_key = functools.cmp_to_key(compare)
 packets = sorted(packets, key = sort_key)
 
 # Find the two divider packets and determine the product of their indices
-decoder_key = math.prod([index for index, packet in enumerate(packets, 1) 
+decoder_key = math.prod([index for index, packet in enumerate(packets, 1)
                          if packet in DIVIDER_PACKETS])
 print(decoder_key)

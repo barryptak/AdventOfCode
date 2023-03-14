@@ -2,7 +2,7 @@
 https://adventofcode.com/2022/day/17
 """
 import copy
-from utils import read_data
+from utils.data import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = False
@@ -44,7 +44,7 @@ rocks = [
 # Bit representation of a row in the chamber when empty or full. The lsb and
 # msb are the walls.
 # We include these in the chamber and rock representations to allow easy
-# detection of a rock shifting sideways into the chamber walls via bitwise AND 
+# detection of a rock shifting sideways into the chamber walls via bitwise AND
 EMPTY_CHAMBER_ROW = int("100000001", 2)
 FULL_CHAMBER_ROW  = int("111111111", 2)
 

@@ -17,7 +17,7 @@ def get_divisors(num):
 
     return divisors
 
-       
+
 @functools.cache
 def num_presents(house_num, presents_per_elf, max_visits_per_elf=math.inf):
     """ Return the number of presents delivered to a given house number """
@@ -39,7 +39,7 @@ def max_possible_presents(house_num, presents_per_elf, max_visits_per_elf=math.i
     return presents * presents_per_elf
 
 
-def find_first_house_to_reach_target(target_presents, presents_per_elf, max_visits_per_elf=math.inf):
+def find_first_house_to_reach_target(target, presents_per_elf, max_visits_per_elf=math.inf):
     """
     Find the number of the first house to reach target_presents presents
     """
@@ -48,7 +48,7 @@ def find_first_house_to_reach_target(target_presents, presents_per_elf, max_visi
     step = 10_000
     num = step + 1
     max_presents = 0
-    while max_presents < target_presents:
+    while max_presents < target:
         max_presents = max_possible_presents(num, presents_per_elf, max_visits_per_elf)
         num += step
 
@@ -66,14 +66,14 @@ def find_first_house_to_reach_target(target_presents, presents_per_elf, max_visi
     # target numbers that the first house to reach it will be one whose number
     # divides by 2,3,4,6,8,12, etc...
     # So, to make things faster we can step by 12 rather than 1 for large
-    # tagets.
+    # targets.
     # THIS IS LIKELY NOT A COMPLETELY GENERAL SOLUTION! Force step to 1 for a
     # guaranteed correct solution.
-    step = 12 if target_presents > 1_000_000 else 1
+    step = 12 if target > 1_000_000 else 1
     num = (num // 12) * 12
     while True:
         presents = num_presents(num, presents_per_elf, max_visits_per_elf)
-        if presents >= target_presents:
+        if presents >= target:
             return num
         num += step
 
@@ -86,5 +86,5 @@ print(find_first_house_to_reach_target(TARGET, 10))
 
 
 # Part 2
-# Find the first houes to reach 29000000 presents with new elf rules
+# Find the first house to reach 29000000 presents with new elf rules
 print(find_first_house_to_reach_target(TARGET, 11, 50))

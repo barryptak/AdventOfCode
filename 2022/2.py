@@ -1,7 +1,7 @@
 """
 https://adventofcode.com/2022/day/2
 """
-from utils import read_data
+from utils.data import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -56,12 +56,12 @@ MOVE_TO_MAKE = {
         LOSE: YOU_PLAY_SCISSORS,
         DRAW: YOU_PLAY_ROCK,
         WIN: YOU_PLAY_PAPER
-    }, 
+    },
     OPPONENT_PLAYS_PAPER: {
         LOSE: YOU_PLAY_ROCK,
         DRAW: YOU_PLAY_PAPER,
         WIN: YOU_PLAY_SCISSORS
-    }, 
+    },
     OPPONENT_PLAYS_SCISSORS: {
         LOSE: YOU_PLAY_PAPER,
         DRAW: YOU_PLAY_SCISSORS,

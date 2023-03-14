@@ -4,7 +4,7 @@ https://adventofcode.com/2016/day/17
 
 import hashlib
 from collections import deque
-from utils import Point2D
+from utils.point2d import Point2D, UDLR_OFFSETS
 
 
 def get_door_states(path):
@@ -21,9 +21,6 @@ def find_path(start, goal, find_shortest):
     find_shortest indicates whether to return the shortest path (True) or the
     length of the longest path (False).
     """
-
-    # Moves and symbols for U, D, L & R
-    MOVES = [Point2D(0, -1), Point2D(0, 1), Point2D(-1, 0), Point2D(1, 0)]
     SYMBOLS = "UDLR"
 
     # Initialise a queue of positions and paths to process
@@ -42,7 +39,7 @@ def find_path(start, goal, find_shortest):
             # We're only interested in open doors
             if door_open:
                 # Does going through this door move us to the goal position?
-                pos2 = position + MOVES[i]
+                pos2 = position + UDLR_OFFSETS[i]
                 if pos2 == goal:
                     if find_shortest:
                         return "".join(path) + SYMBOLS[i]

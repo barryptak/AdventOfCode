@@ -4,11 +4,11 @@ https://adventofcode.com/2022/day/19
 
 # NOTE: This solution here is really slow.
 # It highly likely that you could use a solver for this like sympy or z3 to
-# make this considerably faster. I'm not veryfamiliar with this approach though
+# make this considerably faster. I'm not very familiar with this approach though
 # so I'll save it for a learning exercise in future.
 
 import copy
-from utils import read_data, extract_ints
+from utils.data import read_data, extract_ints
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -45,7 +45,7 @@ def get_max_geodes(robot_build_costs, time):
     max_obsidian_needed_per_step = robot_build_costs["geode"]["obsidian"]
 
     # Pop states to process from the queue until there aren't any left and
-    # we've exhausted all permustations
+    # we've exhausted all permutations
     while len(state_queue) > 0:
         state = state_queue.pop()
 

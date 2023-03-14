@@ -2,7 +2,7 @@
 https://adventofcode.com/2016/day/23
 """
 import copy
-from utils import read_data
+from utils.data import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True

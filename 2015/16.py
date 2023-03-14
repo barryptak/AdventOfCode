@@ -3,7 +3,7 @@ https://adventofcode.com/2015/day/16
 """
 import re
 from collections import defaultdict
-from utils import read_data
+from utils.data import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -63,7 +63,7 @@ def find_sue(sues, search_results, operations):
     """
     Find the number of the Sue who matches the search_results.
     The operations parameter is used to determine how we compare each Sue
-    atribute against the search results.
+    attribute against the search results.
     """
     # Iterate over all Sues looking for a match
     for i, sue in enumerate(sues):

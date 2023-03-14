@@ -4,7 +4,8 @@ https://adventofcode.com/2022/day/23
 import copy
 import math
 from collections import defaultdict
-from utils import read_data, Point2D
+from utils.data import read_data
+from utils.point2d import Point2D
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -81,7 +82,7 @@ def run_round(grid, move_index):
                 pos = Point2D(pos_x, pos_y)
                 new_pos = get_next_position(pos, grid, move_index)
 
-                # We don't just write to the new position - we actally write
+                # We don't just write to the new position - we actually write
                 # the old position into a list associated with the new location
                 # instead. This because more than one elf might want to move
                 # there.

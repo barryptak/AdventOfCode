@@ -2,7 +2,8 @@
 https://adventofcode.com/2022/day/16
 """
 import functools
-from utils import read_data, extract_ints, dijkstra
+from utils.data import read_data, extract_ints
+from utils.path_finding import dijkstra
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -78,10 +79,10 @@ def all_paths(starting_valve, time_remaining, unvisited):
     flow = flow_rate[starting_valve] * time_remaining if time_remaining > 0 else 0
 
     # Iterate over all nodes that have not yet been visited and determine
-    # what flow we acheive by following that path and opening then next node
+    # what flow we achieve by following that path and opening then next node
     path_found = False
     for valve2 in unvisited:
-        # Is it possible to move to valve2 and open it in the remaning time?
+        # Is it possible to move to valve2 and open it in the remaining time?
         cost = (dists[starting_valve][valve2] * MOVEMENT_COST) + OPEN_VALVE_COST
         new_time_remaining = time_remaining - cost
         if new_time_remaining > 0:
@@ -110,7 +111,7 @@ print(max_flow)
 # I swear I did something that optimised this quite a bit, but then in the
 # clean up it went back to the old speed...
 # I can't be bothered figuring out what went wrong now.
-# I had tried memoizing the generator and deduping the frozensets but that seemed
+# I had tried memoizing the generator and de-duping the frozensets but that seemed
 # to make things a little slower, so... ¯\_(ツ)_/¯
 max_flow_2 = 0
 for path1, flow1 in all_paths("AA", 26, valves_with_flow):

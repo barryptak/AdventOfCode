@@ -5,7 +5,7 @@ https://adventofcode.com/2016/day/11
 import re
 from bisect import insort
 from itertools import chain
-from utils import read_data
+from utils.data import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True

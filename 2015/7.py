@@ -2,7 +2,7 @@
 https://adventofcode.com/2015/day/7
 """
 import copy
-from utils import read_data
+from utils.data import read_data
 
 # NOTE: This could have been done more succinctly with sympy or similar, but I
 # like VMs so I thought I'd do it manually.
@@ -31,7 +31,7 @@ def get_register(regs, reg_name):
 def emulate(instructions, registers):
     """ Emulate the circuit given the list of instructions and registers """
 
-    # We keep spinning roungd while there are unresolved instructions.
+    # We keep spinning round while there are unresolved instructions.
     # In this puzzle each register is written to only once, so execution order
     # doesn't matter as long as we eventually get all values calculated.
     while len(instructions) > 0:
@@ -60,8 +60,8 @@ def emulate(instructions, registers):
                     # The only 1 param instruction is a store/write value
                     if param_count == 1:
                         op_name = "STR"
-                    # Otherwise this is a standard r1 OP r2 instruction. Reac
-                    # in the second register or literal to use
+                    # Otherwise this is a standard r1 OP r2 instruction. Read
+                    # in the second register or literal to use.
                     elif (reg_2 := get_register(registers, in_data_split[2])) is not None:
                         op_name = in_data_split[1]
 
@@ -78,6 +78,7 @@ def emulate(instructions, registers):
         # instructions so that we can try them again with the new register
         # values that we have.
         instructions = [instruction for instruction in instructions if instruction != ""]
+
 
 # Part 1
 # Determine the final value for register a

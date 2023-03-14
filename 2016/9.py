@@ -3,7 +3,7 @@ https://adventofcode.com/2016/day/9
 """
 import re
 from math import prod
-from utils import read_data
+from utils.data import read_data
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = False

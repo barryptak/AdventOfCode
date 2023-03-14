@@ -2,7 +2,8 @@
 https://adventofcode.com/2015/day/3
 """
 
-from utils import read_data, Point2D
+from utils.data import read_data
+from utils.point2d import Point2D
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = False

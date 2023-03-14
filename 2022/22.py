@@ -1,7 +1,8 @@
 """
 https://adventofcode.com/2022/day/22
 """
-from utils import read_data, Point2D
+from utils.data import read_data
+from utils.point2d import Point2D
 
 USE_TEST_DATA = False
 SPLIT_BY_LINE = True
@@ -120,7 +121,7 @@ def wrap_down_1(board, pos):
 
 # NOTE: I couldn't be bothered figuring out how to determine the wrapping logic
 # procedurally for any board/cube layout. It felt like way too much work.
-# So, I've just hard-coded the wraping logic for this specific puzzling input
+# So, I've just hard-coded the wrapping logic for this specific puzzling input
 # after figuring it out manually....
 
 def wrap_left_2(_, pos):
