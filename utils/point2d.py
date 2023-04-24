@@ -47,6 +47,12 @@ class Point2D:
     def __hash__(self):
         return hash((self.x, self.y))
 
+    def __str__(self):
+        return f"[{self.x}, {self.y}]"
+
+    def __repr__(self):
+        return f"[{self.x}, {self.y}]"
+
 
 def manhattan_distance(pos1, pos2):
     """ Calculates the Manhattan distance between two points """
