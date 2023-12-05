@@ -57,3 +57,22 @@ def add_tuples(tuple1, tuple2):
     containing the results
     """
     return tuple(map(lambda x, y: x + y, tuple1, tuple2))
+
+
+def merge_overlapping_ranges(ranges):
+    """ Sorts and merges a list of ranges to remove any overlaps. """
+    if not ranges:
+        return []
+
+    sorted_ranges = sorted(ranges, key = lambda r: r.start)
+    merged_ranges = [sorted_ranges[0]]
+
+    for current_range in sorted_ranges[1:]:
+        last_merged_range = merged_ranges[-1]
+        if current_range.start <= last_merged_range.stop:
+            merged_ranges[-1] = range(last_merged_range.start,
+                                      max(last_merged_range.stop, current_range.stop))
+        else:
+            merged_ranges.append(current_range)
+
+    return merged_ranges
