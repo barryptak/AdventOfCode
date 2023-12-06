@@ -12,13 +12,14 @@ data = read_data(USE_TEST_DATA, SPLIT_BY_LINE)
 def calc_ways_to_win(time, record):
     """
     Calculates the total number of ways in which this race can be won.
-
-    Maths:
-    dist = (time - press_time) * press_time
+    Works by solving the quadratic equation that describes the relationship
+    between the total time and the press time.
+    The number of ways in which the race can be won is the number of discrete
+    time steps between the two solutions.
+    dist = speed * time
+    dist = press_time * (time - press_time)
     dist = (time * press_time) - press_time^2
     press_time^2 - (total_time * press_time) + dist = 0
-    press_time_1 = (total_time + sqrt(total_time^2 - (4 * dist))) / 2
-    press_time_2 = (total_time - sqrt(total_time^2 - (4 * dist))) / 2
     """
     root_b_sqr_minus_4ac = sqrt(time*time - 4*(record + 1))
     # Use floor and ceil as partial presses are not valid
