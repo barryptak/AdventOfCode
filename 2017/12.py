@@ -37,8 +37,10 @@ for current_program_id in range(len(data)):
         visited_programs.update(group_program_ids)
 
 
-# Part 1 - How many programs are in the group that contains program ID 0?
+# Part 1
+# How many programs are in the group that contains program ID 0?
 print(visited_group_sizes[0])
 
-# Part 2 - How many groups are there?
+# Part 2
+# How many groups are there?
 print(len(visited_group_sizes))
